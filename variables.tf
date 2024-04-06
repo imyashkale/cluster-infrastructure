@@ -13,12 +13,6 @@ variable "application" {
   description = "Application Name"
 }
 
-variable "cluster_name" {
-  description = "EKS Cluster Name"
-  type        = string
-  default     = "ultra"
-}
-
 variable "cluster_service_ipv4_cidr" {
   description = "ipv4 cidr for the Kubernetes Cluster"
   type        = string
