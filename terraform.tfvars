@@ -1,3 +1,3 @@
 application = "ultra"
-enviroment = "dev"
-aws_region = "us-east-1"
+enviroment  = "dev"
+aws_region  = "us-east-1"

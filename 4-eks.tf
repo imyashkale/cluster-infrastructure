@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "eks" {
-  name     = "${local.name}"
+  name     = local.name
   role_arn = aws_iam_role.eks_master_role.arn
   version  = var.cluster_version
 
@@ -16,7 +16,7 @@ resource "aws_eks_cluster" "eks" {
 
   enabled_cluster_log_types = [
     "api", "audit", "authenticator", "controllerManager", "scheduler"
-  ] 
+  ]
 
   depends_on = [
     aws_iam_role_policy_attachment.eks-AmazonEKSClusterPolicy,

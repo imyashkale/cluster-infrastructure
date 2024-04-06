@@ -20,22 +20,22 @@ output "cluster_endpoint" {
 
 output "cluster_version" {
   description = "EKS Cluster Version"
-  value = aws_eks_cluster.eks.version
+  value       = aws_eks_cluster.eks.version
 }
 
 output "cluster_iam_role_name" {
   description = "EKS Cluster IAM Role Name"
-  value = aws_iam_role.eks_master_role.name
+  value       = aws_iam_role.eks_master_role.name
 }
 
 output "cluster_iam_role_arn" {
   description = "EKS Cluster IAM Role ARN"
-  value = aws_iam_role.eks_master_role.arn
+  value       = aws_iam_role.eks_master_role.arn
 }
 
 output "cluster_oidc_issuer_url" {
   description = "EKS Cluster OIDC Issuer URL"
-  value = aws_eks_cluster.eks.identity[0].oidc[0].issuer
+  value       = aws_eks_cluster.eks.identity[0].oidc[0].issuer
 }
 
 output "cluster_primary_security_group_id" {
@@ -57,7 +57,7 @@ output "node_group_public_arn" {
 
 output "node_group_public_status" {
   description = "Public Node Group status"
-  value       = aws_eks_node_group.eks_public_nodegroup.status 
+  value       = aws_eks_node_group.eks_public_nodegroup.status
 }
 
 output "node_group_public_version" {
@@ -79,7 +79,7 @@ output "node_group_private_arn" {
 
 output "node_group_private_status" {
   description = "Private Node Group status"
-  value       = aws_eks_node_group.eks_private_nodegroup.status 
+  value       = aws_eks_node_group.eks_private_nodegroup.status
 }
 
 output "node_group_private_version" {
