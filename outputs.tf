@@ -86,3 +86,17 @@ output "node_group_private_version" {
   description = "Private Node Group Kubernetes Version"
   value       = aws_eks_node_group.eks_private_nodegroup.version
 }
+
+output "lbc_iam_policy_arn" {
+  value = aws_iam_policy.lbc_iam_policy.arn
+}
+
+output "externaldns_iam_policy_arn" {
+  value = aws_iam_policy.externaldns_iam_policy.arn
+}
+
+output "externaldns_iam_role_arn" {
+  description = "External DNS IAM Role ARN"
+  value       = aws_iam_role.externaldns_iam_role.arn
+}
+

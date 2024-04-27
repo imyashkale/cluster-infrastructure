@@ -4,12 +4,22 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 5.31"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.20"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "2.13.0"
+    }
   }
 
   backend "remote" {
     cloud {
       organization = "ULTRA"
-      workspaces { name = "eks-cluster-infrastructure" }
+      workspaces { 
+        name = "eks-cluster-infrastructure" 
+      }
     }
   }
 }
