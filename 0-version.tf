@@ -39,14 +39,14 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 provider "kubernetes" {
-  host                   = data.terraform_remote_state.eks.outputs.cluster_endpoint
+  host                   = aws_eks_cluster.eks.endpoint
   cluster_ca_certificate = local.cluster_ca_certificate
   token                  = data.aws_eks_cluster_auth.cluster.token
 }
 
 provider "helm" {
   kubernetes {
-    host                   = data.terraform_remote_state.eks.outputs.cluster_endpoint
+    host                   = aws_eks_cluster.eks.endpoint
     cluster_ca_certificate = local.cluster_ca_certificate
     token                  = data.aws_eks_cluster_auth.cluster.token
   }
