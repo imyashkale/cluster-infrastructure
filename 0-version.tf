@@ -35,7 +35,7 @@ locals {
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = aws_eks_cluster.eks.cluster_id
+  name = aws_eks_cluster.eks.id
 }
 
 provider "kubernetes" {
