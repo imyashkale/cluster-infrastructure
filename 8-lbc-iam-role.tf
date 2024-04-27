@@ -28,12 +28,6 @@ resource "aws_iam_role" "lbc_iam_role" {
         Principal = {
           Federated = "${aws_iam_openid_connect_provider.oidc_provider.arn}"
         }
-        Condition = {
-          StringEquals = {
-            "${local.aws_iam_openid_connect_provider_extract_from_arn}:aud" : "sts.amazonaws.com",
-            "${local.aws_iam_openid_connect_provider_extract_from_arn}:sub" : "system:serviceaccount:kube-system:aws-load-balancer-controller"
-          }
-        }
       },
     ]
   })
