@@ -11,12 +11,29 @@ resource "aws_iam_policy" "lbc_iam_policy" {
   name        = "${local.name}-AWSLoadBalancerControllerIAMPolicy"
   path        = "/"
   description = "AWS Load Balancer Controller IAM Policy"
-  policy = data.http.lbc_iam_policy.response_body
+  policy      = data.http.lbc_iam_policy.response_body
 }
 
 resource "aws_iam_role" "lbc_iam_role" {
   name = "${local.name}-lbc-iam-role"
 
+  inline_policy {
+    name = "elb_describe_target_groups_policy"
+    policy = jsonencode({
+      Version = "2012-10-17",
+      Statement = [
+        {
+          Effect   = "Allow",
+          Action   = "elasticloadbalancing:DescribeTargetGroups",
+          Resource = "*",
+          }, {
+          Effect   = "Allow",
+          Action   = "ec2:DescribeSecurityGroups",
+          Resource = "*",
+        }
+      ],
+    })
+  }
   # Converts a terraform expression result to valid JSON syntax.
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
