@@ -5,6 +5,9 @@ resource "kubernetes_namespace_v1" "argocd" {
 }
 
 resource "helm_release" "argocd" {
+
+  depends_on = [ null_resource.nodes_ready ]
+  
   name = "argocd"
 
   repository       = "https://argoproj.github.io/argo-helm"

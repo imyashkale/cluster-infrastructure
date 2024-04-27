@@ -25,7 +25,7 @@ resource "helm_release" "ebs_csi_driver" {
     value = aws_iam_role.ebs_csi_iam_role.arn
   }
 
-  depends_on = [aws_iam_role.ebs_csi_iam_role]
+  depends_on = [aws_iam_role.ebs_csi_iam_role, null_resource.nodes_ready]
 }
 
 

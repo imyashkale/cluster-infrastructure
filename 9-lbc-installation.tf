@@ -1,5 +1,5 @@
 resource "helm_release" "loadbalancer_controller" {
-  depends_on = [aws_iam_role.lbc_iam_role]
+  depends_on = [aws_iam_role.lbc_iam_role, null_resource.nodes_ready]
   name       = "aws-load-balancer-controller"
 
   repository = "https://aws.github.io/eks-charts"

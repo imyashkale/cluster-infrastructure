@@ -69,7 +69,8 @@ resource "kubernetes_namespace_v1" "external_dns" {
 }
 
 resource "helm_release" "external_dns" {
-  depends_on = [aws_iam_role.externaldns_iam_role]
+
+  depends_on = [aws_iam_role.externaldns_iam_role, null_resource.nodes_ready]
   name       = "external-dns"
 
   repository = "https://kubernetes-sigs.github.io/external-dns/"
