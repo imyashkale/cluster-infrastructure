@@ -1,8 +1,9 @@
 data "terraform_remote_state" "vpc" {
-  backend = "s3"
+  backend = "remote"
   config = {
-    bucket = "infrastructure-statefile"
-    key    = "infrastructure/vpc/statefile"
-    region = "ap-south-1"
+    organization = "ULTRA"
+    workspaces = {
+      name = "networking-layer"
+    }
   }
 }

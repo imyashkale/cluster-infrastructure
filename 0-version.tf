@@ -6,12 +6,11 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket = "infrastructure-statefile"
-    key    = "infrastructure/eks/statefile"
-    region = "ap-south-1"
-
-    dynamodb_table = "infrastructure-state-lock"
+  backend "remote" {
+    cloud {
+      organization = "ULTRA"
+      workspaces { name = "eks-cluster-infrastructure" }
+    }
   }
 }
 
