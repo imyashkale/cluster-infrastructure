@@ -17,4 +17,9 @@ resource "helm_release" "argocd" {
   version          = "3.35.4"
 
   values = [file("configurations/argocd/values.yaml")]
+
+  set {
+    name = "configs.secret.argocdServerAdminPassword"
+    value = var.argocd_admin_password
+  }
 }

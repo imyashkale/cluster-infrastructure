@@ -1,6 +1,5 @@
 resource "helm_release" "loadbalancer_controller" {
-  depends_on = [aws_iam_role.lbc_iam_role, null_resource.nodes_ready]
-  name       = "aws-load-balancer-controller"
+  name = "aws-load-balancer-controller"
 
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
@@ -41,6 +40,11 @@ resource "helm_release" "loadbalancer_controller" {
     name  = "clusterName"
     value = aws_eks_cluster.eks.id
   }
+
+  depends_on = [
+    aws_iam_role.lbc_iam_role,
+    null_resource.nodes_ready
+  ]
 }
 
 

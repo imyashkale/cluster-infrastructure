@@ -49,3 +49,8 @@ variable "eks_oidc_root_ca_thumbprint" {
   default     = "9e99a48a9960b14926bb7f3b02e22da2b0ab7280"
 }
 
+variable "argocd_admin_password" {
+  description = "OverWrite to the ArgoCD Default Password"
+  type        = string
+  sensitive   = true
+}
