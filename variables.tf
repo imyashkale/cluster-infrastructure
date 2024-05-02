@@ -13,6 +13,12 @@ variable "application" {
   description = "Application Name"
 }
 
+variable "enable_public_nodes" {
+  description = "Enable Public Nodes"
+  type = bool
+  default = false
+}
+
 variable "cluster_service_ipv4_cidr" {
   description = "ipv4 cidr for the Kubernetes Cluster"
   type        = string
