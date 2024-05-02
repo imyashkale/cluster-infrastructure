@@ -15,14 +15,14 @@ data "http" "ebs_csi_iam_policy" {
 
 // Create the IAM Policy
 resource "aws_iam_policy" "ebs_csi_iam_policy" {
-  name        = "${local.name}-AmazonEKS_EBS_CSI_Driver_Policy"
+  name        = "${var.name}-AmazonEKS_EBS_CSI_Driver_Policy"
   path        = "/"
   description = "EBS CSI IAM Policy"
   policy      = data.http.ebs_csi_iam_policy.response_body
 }
 
 resource "aws_iam_role" "ebs_csi_iam_role" {
-  name = "${local.name}-ebs-csi-iam-role"
+  name = "${var.name}-ebs-csi-iam-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -36,7 +36,7 @@ resource "aws_iam_role" "ebs_csi_iam_role" {
         }
         Condition = {
           StringEquals = {
-            "${local.aws_iam_openid_connect_provider_extract_from_arn}:sub" : "system:serviceaccount:${kubernetes_namespace_v1.ebs_csi_driver.metadata[0].name}:ebs-csi-controller-sa"
+            "${var.aws_iam_openid_connect_provider_extract_from_arn}:sub" : "system:serviceaccount:${kubernetes_namespace_v1.ebs_csi_driver.metadata[0].name}:ebs-csi-controller-sa"
           }
         }
 
@@ -44,7 +44,7 @@ resource "aws_iam_role" "ebs_csi_iam_role" {
     ]
   })
 
-  tags = local.tags
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "ebs_csi_iam_role_policy_attach" {
