@@ -47,22 +47,22 @@ output "cluster_primary_security_group_id" {
 
 output "node_group_public_id" {
   description = "Public Node Group ID"
-  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup.id
+  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup[0].id
 }
 
 output "node_group_public_arn" {
   description = "Public Node Group ARN"
-  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup.arn
+  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup[0].arn
 }
 
 output "node_group_public_status" {
   description = "Public Node Group status"
-  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup.status
+  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup[0].status
 }
 
 output "node_group_public_version" {
   description = "Public Node Group Kubernetes Version"
-  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup.version
+  value       = var.enable_public_nodes ? null : aws_eks_node_group.eks_public_nodegroup[0].version
 }
 
 # Node Group - PRIVATE
