@@ -29,6 +29,7 @@ module "argocd" {
   source                = "./argocd"
   tags                  = local.tags
   argocd_admin_password = var.argocd_admin_password
+  ingress_class_name    = module.loadbalancer.default_ingress_class_name
   depends_on            = [module.externaldns]
 }
 

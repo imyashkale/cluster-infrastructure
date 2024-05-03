@@ -29,7 +29,7 @@ resource "kubernetes_ingress_v1" "router" {
   }
 
   spec {
-    ingress_class_name = kubernetes_ingress_class_v1.ingress_class_default.metadata[0].name
+    ingress_class_name = var.ingress_class_name
     rule {
       host = "argocd.imyashkale.com"
       http {
