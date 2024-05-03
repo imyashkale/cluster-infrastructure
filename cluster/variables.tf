@@ -12,6 +12,16 @@ variable "subnets_id" {
   type = list(string)
 }
 
+variable "public_subnets" {
+  description = "AWS VPC Public Subnets Ids"
+  type = list(string)
+}
+
+variable "private_subnets" {
+  description = "AWS VPC Private Subnets Ids"
+  type = list(string)
+}
+
 variable "enable_public_nodes" {
   description = "Enable Public Nodes"
   type        = bool

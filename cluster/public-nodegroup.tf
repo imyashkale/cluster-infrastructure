@@ -4,7 +4,7 @@ resource "aws_eks_node_group" "eks_public_nodegroup" {
   cluster_name    = aws_eks_cluster.eks.name
   node_group_name = "${var.name}-eks-public-nodegroup"
   node_role_arn   = aws_iam_role.eks_nodegroup_role.arn
-  subnet_ids      = data.terraform_remote_state.vpc.outputs.public_subnets
+  subnet_ids      = var.public_subnets
 
   // AMI 
   ami_type       = "AL2_x86_64"

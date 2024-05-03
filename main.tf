@@ -1,8 +1,11 @@
 module "cluster" {
-  name       = local.name
-  source     = "./cluster"
-  subnets_id = data.terraform_remote_state.vpc.outputs.public_subnets
-  tags       = local.tags
+  name                = local.name
+  source              = "./cluster"
+  subnets_id          = data.terraform_remote_state.vpc.outputs.public_subnets
+  private_subnets     = data.terraform_remote_state.vpc.outputs.private_subnets
+  public_subnets      = data.terraform_remote_state.vpc.outputs.public_subnets
+  enable_public_nodes = false
+  tags                = local.tags
 }
 
 module "loadbalancer" {
