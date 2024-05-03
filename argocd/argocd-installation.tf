@@ -14,7 +14,7 @@ resource "helm_release" "argocd" {
   create_namespace = true
   version          = "3.35.4"
 
-  values = [file("./values.yaml")]
+  values = [file("${path.moduel}/values.yaml")]
 
   set {
     name  = "configs.secret.argocdServerAdminPassword"
