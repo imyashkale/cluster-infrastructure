@@ -7,6 +7,11 @@ variable "tags" {
   description = "Common Tags"
 }
 
+variable "subnets_id" {
+  description = "AWS EKS Subnet Ids"
+  type = list(string)
+}
+
 variable "enable_public_nodes" {
   description = "Enable Public Nodes"
   type        = bool
