@@ -47,7 +47,7 @@ provider "kubernetes" {
 
 provider "helm" {
   kubernetes {
-    host                   = aws_eks_cluster.eks.endpoint
+    host                   = module.cluster.endpoint
     cluster_ca_certificate = local.cluster_ca_certificate
     token                  = data.aws_eks_cluster_auth.cluster.token
   }

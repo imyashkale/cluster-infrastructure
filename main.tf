@@ -21,7 +21,7 @@ module "externaldns" {
   name               = local.name
   source             = "./externaldns"
   oidc_arn           = module.cluster.oidc_arn
-  oidc_extracted_arn = module.cluster.aws_iam_openid_connect_provider_extract_from_arn
+  oidc_extracted_arn = module.cluster.oidc_extracted_arn
 }
 
 module "argocd" {
