@@ -3,7 +3,7 @@ resource "kubernetes_ingress_v1" "router" {
     name      = "argocd"
     namespace = kubernetes_namespace_v1.argocd.metadata[0].name
     annotations = {
-      "alb.ingress.kubernetes.io/load-balancer-name"           = "${local.name}"
+      "alb.ingress.kubernetes.io/load-balancer-name"           = "${var.name}"
       "alb.ingress.kubernetes.io/scheme"                       = "internet-facing"
       "alb.ingress.kubernetes.io/healthcheck-protocol"         = "HTTP"
       "alb.ingress.kubernetes.io/healthcheck-port"             = "traffic-port"

@@ -1,6 +1,7 @@
+
 # Resource: Create External DNS IAM Policy 
 resource "aws_iam_policy" "externaldns_iam_policy" {
-  name        = "${local.name}-AllowExternalDNSUpdates"
+  name        = "${var.name}-AllowExternalDNSUpdates"
   path        = "/"
   description = "External DNS IAM Policy"
   policy = jsonencode({
@@ -30,7 +31,7 @@ resource "aws_iam_policy" "externaldns_iam_policy" {
 }
 
 resource "aws_iam_role" "externaldns_iam_role" {
-  name = "${local.name}-externaldns-iam-role"
+  name = "${var.name}-externaldns-iam-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -44,8 +45,8 @@ resource "aws_iam_role" "externaldns_iam_role" {
         }
         Condition = {
           StringEquals = {
-            "${local.aws_iam_openid_connect_provider_extract_from_arn}:aud" : "sts.amazonaws.com",
-            "${local.aws_iam_openid_connect_provider_extract_from_arn}:sub" : "system:serviceaccount:external-dns:external-dns"
+            "${var.aws_iam_openid_connect_provider_extract_from_arn}:aud" : "sts.amazonaws.com",
+            "${var.aws_iam_openid_connect_provider_extract_from_arn}:sub" : "system:serviceaccount:external-dns:external-dns"
           }
         }
       },

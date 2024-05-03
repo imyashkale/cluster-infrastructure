@@ -51,3 +51,14 @@ provider "helm" {
     token                  = data.aws_eks_cluster_auth.cluster.token
   }
 }
+
+
+data "terraform_remote_state" "vpc" {
+  backend = "remote"
+  config = {
+    organization = "ULTRA"
+    workspaces = {
+      name = "networking-layer"
+    }
+  }
+}

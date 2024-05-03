@@ -88,15 +88,17 @@ output "node_group_private_version" {
 }
 
 output "lbc_iam_policy_arn" {
-  value = module.cluster.aws_iam_policy.lbc_iam_policy.arn
+  description = "Loadbalancer Private IAM Policy ARN"
+  value       = module.loadbalancer.aws_iam_policy.lbc_iam_policy.arn
 }
 
 output "externaldns_iam_policy_arn" {
-  value = aws_iam_policy.externaldns_iam_policy.arn
+  description = "External Loadbalancer IAM Policy ARN"
+  value       = module.externaldns.aws_iam_policy.externaldns_iam_policy.arn
 }
 
 output "externaldns_iam_role_arn" {
   description = "External DNS IAM Role ARN"
-  value       = aws_iam_role.externaldns_iam_role.arn
+  value       = module.externaldns.aws_iam_role.externaldns_iam_role.arn
 }
 

@@ -8,14 +8,14 @@ data "http" "lbc_iam_policy" {
 }
 
 resource "aws_iam_policy" "lbc_iam_policy" {
-  name        = "${local.name}-AWSLoadBalancerControllerIAMPolicy"
+  name        = "${var.name}-AWSLoadBalancerControllerIAMPolicy"
   path        = "/"
   description = "AWS Load Balancer Controller IAM Policy"
   policy      = data.http.lbc_iam_policy.response_body
 }
 
 resource "aws_iam_role" "lbc_iam_role" {
-  name = "${local.name}-lbc-iam-role"
+  name = "${var.name}-lbc-iam-role"
 
   # Converts a terraform expression result to valid JSON syntax.
   assume_role_policy = jsonencode({
