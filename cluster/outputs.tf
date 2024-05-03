@@ -33,9 +33,18 @@ output "oidc_issuer_url" {
   value       = aws_eks_cluster.eks.identity[0].oidc[0].issuer
 }
 
+
 output "oidc_arn" {
-  description = "AWS OIDC Provider ARN"
+  description = "AWS IAM Open ID Connect Provider ARN"
   value       = aws_iam_openid_connect_provider.oidc_provider.arn
+}
+
+output "oidc_extracted_arn" {
+  description = "AWS IAM Open ID Connect Provider extract from ARN"
+  value = element(
+    split(
+      "oidc-provider/", "${aws_iam_openid_connect_provider.oidc_provider.arn}"
+  ), 1)
 }
 
 output "primary_security_group_id" {
