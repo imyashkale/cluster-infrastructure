@@ -33,6 +33,11 @@ output "oidc_issuer_url" {
   value       = aws_eks_cluster.eks.identity[0].oidc[0].issuer
 }
 
+output "oidc_arn" {
+  description = "AWS OIDC Provider ARN"
+  value       = aws_iam_openid_connect_provider.oidc_provider.arn
+}
+
 output "primary_security_group_id" {
   description = "The cluster primary security group ID created by the EKS cluster on 1.14 or later. Referred to as 'Cluster security group' in the EKS console."
   value       = aws_eks_cluster.eks.vpc_config[0].cluster_security_group_id

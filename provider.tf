@@ -12,6 +12,7 @@ terraform {
       source  = "hashicorp/helm"
       version = "2.13.0"
     }
+
   }
 
   backend "remote" {
@@ -30,16 +31,16 @@ provider "aws" {
 
 locals {
   cluster_ca_certificate = base64decode(
-    module.cluster.aws_eks_cluster.eks.certificate_authority[0].data
+    module.cluster.certificate_authority_data
   )
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.cluster.aws_eks_cluster.eks.id
+  name = module.cluster.id
 }
 
 provider "kubernetes" {
-  host                   = module.cluster.aws_eks_cluster.eks.endpoint
+  host                   = module.cluster.endpoint
   cluster_ca_certificate = local.cluster_ca_certificate
   token                  = data.aws_eks_cluster_auth.cluster.token
 }

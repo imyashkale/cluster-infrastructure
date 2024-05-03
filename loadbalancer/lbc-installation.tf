@@ -28,7 +28,7 @@ resource "helm_release" "loadbalancer_controller" {
 
   set {
     name  = "vpcId"
-    value = data.terraform_remote_state.vpc.outputs.vpc_id
+    value = var.vpc_id
   }
 
   set {
@@ -38,12 +38,11 @@ resource "helm_release" "loadbalancer_controller" {
 
   set {
     name  = "clusterName"
-    value = aws_eks_cluster.eks.id
+    value = var.cluster_id
   }
 
   depends_on = [
     aws_iam_role.lbc_iam_role,
-    null_resource.nodes_ready
   ]
 }
 

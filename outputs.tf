@@ -1,11 +1,11 @@
 output "cluster_id" {
   description = "EKS Cluster Id"
-  value       = module.cluster.cluster_id
+  value       = module.cluster.id
 }
 
 output "cluster_arn" {
   description = "Cluster ARN"
-  value       = module.cluster.cluster_arn
+  value       = module.cluster.arn
 }
 
 output "cluster_certificate_authority_data" {

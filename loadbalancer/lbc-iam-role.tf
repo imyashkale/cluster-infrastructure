@@ -26,7 +26,7 @@ resource "aws_iam_role" "lbc_iam_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Federated = "${aws_iam_openid_connect_provider.oidc_provider.arn}"
+          Federated = "${var.oidc_arn}"
         }
       },
     ]
