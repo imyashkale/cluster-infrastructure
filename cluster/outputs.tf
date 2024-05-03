@@ -1,44 +1,39 @@
-output "cluster_id" {
+output "id" {
   description = "EKS Cluster Id"
   value       = aws_eks_cluster.eks.id
 }
 
-output "cluster_arn" {
+output "arn" {
   description = "Cluster ARN"
   value       = aws_eks_cluster.eks.arn
 }
 
-output "cluster_certificate_authority_data" {
+output "certificate_authority_data" {
   description = "certificate-authority-data of Cluster"
   value       = aws_eks_cluster.eks.certificate_authority[0].data
 }
 
-output "cluster_endpoint" {
+output "endpoint" {
   description = "EKS - Kubernetes API"
   value       = aws_eks_cluster.eks.endpoint
 }
 
-output "cluster_version" {
+output "version" {
   description = "EKS Cluster Version"
   value       = aws_eks_cluster.eks.version
 }
 
-output "cluster_iam_role_name" {
+output "iam_role_name" {
   description = "EKS Cluster IAM Role Name"
   value       = aws_iam_role.eks_master_role.name
 }
 
-output "cluster_iam_role_arn" {
-  description = "EKS Cluster IAM Role ARN"
-  value       = aws_iam_role.eks_master_role.arn
-}
-
-output "cluster_oidc_issuer_url" {
+output "oidc_issuer_url" {
   description = "EKS Cluster OIDC Issuer URL"
   value       = aws_eks_cluster.eks.identity[0].oidc[0].issuer
 }
 
-output "cluster_primary_security_group_id" {
+output "primary_security_group_id" {
   description = "The cluster primary security group ID created by the EKS cluster on 1.14 or later. Referred to as 'Cluster security group' in the EKS console."
   value       = aws_eks_cluster.eks.vpc_config[0].cluster_security_group_id
 }
