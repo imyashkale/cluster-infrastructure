@@ -15,6 +15,7 @@ module "loadbalancer" {
   vpc_id     = data.terraform_remote_state.vpc.outputs.vpc_id
   cluster_id = module.cluster.id
   oidc_arn   = module.cluster.oidc_arn
+  depends_on = [module.cluster]
 }
 
 module "externaldns" {
@@ -22,6 +23,7 @@ module "externaldns" {
   source             = "./externaldns"
   oidc_arn           = module.cluster.oidc_arn
   oidc_extracted_arn = module.cluster.oidc_extracted_arn
+  depends_on         = [module.cluster]
 }
 
 module "argocd" {
@@ -30,7 +32,7 @@ module "argocd" {
   tags                  = local.tags
   argocd_admin_password = var.argocd_admin_password
   ingress_class_name    = module.loadbalancer.default_ingress_class_name
-  depends_on            = [module.externaldns]
+  depends_on            = [module.cluster, module.loadbalancer]
 }
 
 module "storage" {
