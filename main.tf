@@ -18,9 +18,10 @@ module "loadbalancer" {
 }
 
 module "externaldns" {
-  name                                             = local.name
-  source                                           = "./externaldns"
-  aws_iam_openid_connect_provider_extract_from_arn = module.cluster.aws_iam_openid_connect_provider_extract_from_arn
+  name               = local.name
+  source             = "./externaldns"
+  oidc_arn           = module.cluster.oidc_arn
+  oidc_extracted_arn = module.cluster.aws_iam_openid_connect_provider_extract_from_arn
 }
 
 module "argocd" {
@@ -32,10 +33,10 @@ module "argocd" {
 }
 
 module "storage" {
-  name                                             = local.name
-  source                                           = "./storage"
-  tags                                             = local.tags
-  aws_iam_openid_connect_provider_arn              = module.cluster.oidc_arn
-  aws_iam_openid_connect_provider_extract_from_arn = module.cluster.aws_iam_openid_connect_provider_extract_from_arn
-  depends_on                                       = [module.cluster]
+  name               = local.name
+  source             = "./storage"
+  tags               = local.tags
+  oidc_arn           = module.cluster.oidc_arn
+  oidc_extracted_arn = module.cluster.oidc_extracted_arn
+  depends_on         = [module.cluster]
 }

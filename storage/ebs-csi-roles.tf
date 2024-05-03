@@ -32,11 +32,11 @@ resource "aws_iam_role" "ebs_csi_iam_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Federated = "${var.aws_iam_openid_connect_provider_arn}"
+          Federated = "${var.oidc_arn}"
         }
         Condition = {
           StringEquals = {
-            "${var.aws_iam_openid_connect_provider_extract_from_arn}:sub" : "system:serviceaccount:${kubernetes_namespace_v1.ebs_csi_driver.metadata[0].name}:ebs-csi-controller-sa"
+            "${var.oidc_extracted_arn}:sub" : "system:serviceaccount:${kubernetes_namespace_v1.ebs_csi_driver.metadata[0].name}:ebs-csi-controller-sa"
           }
         }
 

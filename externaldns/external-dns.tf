@@ -41,12 +41,12 @@ resource "aws_iam_role" "externaldns_iam_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Federated = "${aws_iam_openid_connect_provider.oidc_provider.arn}"
+          Federated = "${var.oidc_arn}"
         }
         Condition = {
           StringEquals = {
-            "${var.aws_iam_openid_connect_provider_extract_from_arn}:aud" : "sts.amazonaws.com",
-            "${var.aws_iam_openid_connect_provider_extract_from_arn}:sub" : "system:serviceaccount:external-dns:external-dns"
+            "${var.oidc_extracted_arn}:aud" : "sts.amazonaws.com",
+            "${var.oidc_extracted_arn}:sub" : "system:serviceaccount:external-dns:external-dns"
           }
         }
       },
@@ -71,7 +71,7 @@ resource "kubernetes_namespace_v1" "external_dns" {
 
 resource "helm_release" "external_dns" {
 
-  depends_on = [aws_iam_role.externaldns_iam_role, null_resource.nodes_ready]
+  depends_on = [aws_iam_role.externaldns_iam_role]
   name       = "external-dns"
 
   repository = "https://kubernetes-sigs.github.io/external-dns/"
