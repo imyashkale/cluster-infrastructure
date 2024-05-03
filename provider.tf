@@ -57,7 +57,7 @@ data "terraform_remote_state" "vpc" {
   config = {
     organization = "ULTRA"
     workspaces = {
-      name = "networking-layer"
+      name = "network-infrastructure"
     }
   }
 }
