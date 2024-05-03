@@ -30,10 +30,3 @@ resource "aws_eks_node_group" "eks_private_nodegroup" {
     Name = "Public Node Group"
   }
 }
-
-resource "null_resource" "nodes_ready" {
-  depends_on = [
-    aws_eks_node_group.eks_private_nodegroup,
-    aws_eks_node_group.eks_public_nodegroup
-  ]
-}

@@ -50,7 +50,7 @@ resource "kubernetes_ingress_v1" "router" {
   }
 
   // using argocd-server service which is deployed by helm chart called argocd
-  depends_on = [helm_release.argocd, helm_release.loadbalancer_controller]
+  depends_on = [helm_release.argocd]
 }
 
 
