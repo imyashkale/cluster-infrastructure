@@ -15,12 +15,10 @@ terraform {
 
   }
 
-  backend "remote" {
-    cloud {
-      organization = "ULTRA"
-      workspaces {
-        name = "eks-cluster-infrastructure"
-      }
+  cloud {
+    organization = "ULTRA"
+    workspaces {
+      name = "cluster-infrastructure"
     }
   }
 }
