@@ -1,46 +1,46 @@
 output "cluster_id" {
   description = "EKS Cluster Id"
-  value       = module.cluster.aws_eks_cluster.eks.id
+  value       = aws_eks_cluster.eks.id
 }
 
 output "cluster_arn" {
   description = "Cluster ARN"
-  value       = module.cluster.aws_eks_cluster.eks.arn
+  value       = aws_eks_cluster.eks.arn
 }
 
 output "cluster_certificate_authority_data" {
   description = "certificate-authority-data of Cluster"
-  value       = module.cluster.aws_eks_cluster.eks.certificate_authority[0].data
+  value       = aws_eks_cluster.eks.certificate_authority[0].data
 }
 
 output "cluster_endpoint" {
   description = "EKS - Kubernetes API"
-  value       = module.cluster.aws_eks_cluster.eks.endpoint
+  value       = aws_eks_cluster.eks.endpoint
 }
 
 output "cluster_version" {
   description = "EKS Cluster Version"
-  value       = module.cluster.aws_eks_cluster.eks.version
+  value       = aws_eks_cluster.eks.version
 }
 
 output "cluster_iam_role_name" {
   description = "EKS Cluster IAM Role Name"
-  value       = module.cluster.aws_iam_role.eks_master_role.name
+  value       = aws_iam_role.eks_master_role.name
 }
 
 output "cluster_iam_role_arn" {
   description = "EKS Cluster IAM Role ARN"
-  value       = module.cluster.aws_iam_role.eks_master_role.arn
+  value       = aws_iam_role.eks_master_role.arn
 }
 
 output "cluster_oidc_issuer_url" {
   description = "EKS Cluster OIDC Issuer URL"
-  value       = module.cluster.aws_eks_cluster.eks.identity[0].oidc[0].issuer
+  value       = aws_eks_cluster.eks.identity[0].oidc[0].issuer
 }
 
 output "cluster_primary_security_group_id" {
   description = "The cluster primary security group ID created by the EKS cluster on 1.14 or later. Referred to as 'Cluster security group' in the EKS console."
-  value       = module.cluster.aws_eks_cluster.eks.vpc_config[0].cluster_security_group_id
+  value       = aws_eks_cluster.eks.vpc_config[0].cluster_security_group_id
 }
 
 # Node Group - Public
@@ -69,34 +69,20 @@ output "cluster_primary_security_group_id" {
 
 output "node_group_private_id" {
   description = "Node Group 1 ID"
-  value       = module.cluster.aws_eks_node_group.eks_private_nodegroup.id
+  value       = aws_eks_node_group.eks_private_nodegroup.id
 }
 
 output "node_group_private_arn" {
   description = "Private Node Group ARN"
-  value       = module.cluster.aws_eks_node_group.eks_private_nodegroup.arn
+  value       = aws_eks_node_group.eks_private_nodegroup.arn
 }
 
 output "node_group_private_status" {
   description = "Private Node Group status"
-  value       = module.cluster.aws_eks_node_group.eks_private_nodegroup.status
+  value       = aws_eks_node_group.eks_private_nodegroup.status
 }
 
 output "node_group_private_version" {
   description = "Private Node Group Kubernetes Version"
-  value       = module.cluster.aws_eks_node_group.eks_private_nodegroup.version
+  value       = aws_eks_node_group.eks_private_nodegroup.version
 }
-
-output "lbc_iam_policy_arn" {
-  value = module.cluster.aws_iam_policy.lbc_iam_policy.arn
-}
-
-output "externaldns_iam_policy_arn" {
-  value = aws_iam_policy.externaldns_iam_policy.arn
-}
-
-output "externaldns_iam_role_arn" {
-  description = "External DNS IAM Role ARN"
-  value       = aws_iam_role.externaldns_iam_role.arn
-}
-

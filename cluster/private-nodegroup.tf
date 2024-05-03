@@ -1,6 +1,6 @@
 resource "aws_eks_node_group" "eks_private_nodegroup" {
   cluster_name    = aws_eks_cluster.eks.name
-  node_group_name = "${local.name}-eks-private-nodegroup"
+  node_group_name = "${var.name}-eks-private-nodegroup"
   node_role_arn   = aws_iam_role.eks_nodegroup_role.arn
   subnet_ids      = data.terraform_remote_state.vpc.outputs.private_subnets
 

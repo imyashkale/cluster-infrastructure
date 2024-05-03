@@ -8,9 +8,9 @@ resource "aws_iam_openid_connect_provider" "oidc_provider" {
 
   tags = merge(
     {
-      Name = "${local.name}"
+      Name = "${var.name}"
     },
-    local.tags
+    var.tags
   )
 }
 

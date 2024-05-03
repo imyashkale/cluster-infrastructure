@@ -6,8 +6,8 @@ resource "kubernetes_namespace_v1" "argocd" {
 
 resource "helm_release" "argocd" {
 
-  depends_on = [ null_resource.nodes_ready ]
-  
+  depends_on = [null_resource.nodes_ready]
+
   name = "argocd"
 
   repository       = "https://argoproj.github.io/argo-helm"
@@ -19,7 +19,7 @@ resource "helm_release" "argocd" {
   values = [file("configurations/argocd/values.yaml")]
 
   set {
-    name = "configs.secret.argocdServerAdminPassword"
+    name  = "configs.secret.argocdServerAdminPassword"
     value = var.argocd_admin_password
   }
 }

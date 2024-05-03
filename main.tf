@@ -1,3 +1,8 @@
+module "cluster" {
+  name   = local.name
+  source = "./cluster"
+  tags   = local.tags
+}
 
 module "storage" {
   name                                             = local.name
