@@ -8,7 +8,7 @@ resource "helm_release" "ebs_driver" {
 
   name       = "${var.name}-aws-ebs-csi-driver"
   repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
-  chart      = "ebs-driver"
+  chart      = "aws-ebs-csi-driver"
   namespace  = kubernetes_namespace_v1.block_storage.metadata[0].name
 
   set {
