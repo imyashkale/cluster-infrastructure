@@ -13,6 +13,12 @@ variable "application" {
   description = "Application Name"
 }
 
+variable "enable_monitoring" {
+  description = "Deploy Prometheus and Grafana"
+  type        = bool
+  default     = false
+}
+
 variable "argocd_admin_password" {
   description = "OverWrite to the ArgoCD Default Password"
   type        = string

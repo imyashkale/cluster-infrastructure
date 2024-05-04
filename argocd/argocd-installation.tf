@@ -20,4 +20,9 @@ resource "helm_release" "argocd" {
     name  = "configs.secret.argocdServerAdminPassword"
     value = var.argocd_admin_password
   }
+
+  set {
+    name = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/certificate-arn"
+    value =  "${aws_acm_certificate.acm_cert.arn}"
+  }
 }

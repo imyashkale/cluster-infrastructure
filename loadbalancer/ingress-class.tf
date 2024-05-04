@@ -1,6 +1,6 @@
 resource "kubernetes_ingress_class_v1" "ingress_class_default" {
   metadata {
-    name = "aws-ingress-class"
+    name = "alb"
     annotations = {
       "ingressclass.kubernetes.io/is-default-class" = "true"
     }

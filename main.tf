@@ -41,6 +41,7 @@ module "crossplane" {
 }
 
 module "monitoring" {
+  count              = var.enable_monitoring ? 1 : 0
   name               = local.name
   source             = "./monitoring"
   storage_class_name = module.storage.class_name

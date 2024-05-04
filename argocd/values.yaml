@@ -1,11 +1,21 @@
 global:
+  domain: argocd.imyashkale.com
   image:
     tag: "v2.6.6"
 server:
-  extraArgs:
-    - --insecure
-  service:
-    type: NodePort
+  ingress:
+    enabled: true
+    controller: aws
+    ingressClassName: alb
     annotations:
-      nginx.ingress.kubernetes.io/rewrite-target: /
-      alb.ingress.kubernetes.io/healthcheck-path: /
+      alb.ingress.kubernetes.io/scheme: internal
+      alb.ingress.kubernetes.io/target-type: ip
+      alb.ingress.kubernetes.io/backend-protocol: HTTP
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":80}, {"HTTPS":443}]'
+      alb.ingress.kubernetes.io/ssl-redirect: "443"
+      alb.ingress.kubernetes.io/group.name: ultra
+      alb.ingress.kubernetes.io/group.order": 20
+      external-dns.alpha.kubernetes.io/hostname: "argocd.imyashkale.com"
+    aws:
+      serviceType: ClusterIP
+      backendProtocolVersion: GRPC
