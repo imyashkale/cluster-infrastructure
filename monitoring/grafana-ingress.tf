@@ -15,8 +15,8 @@ resource "kubernetes_ingress_v1" "grafana" {
       "alb.ingress.kubernetes.io/unhealthy-threshold-count"    = 2
 
       // SSL
-      "alb.ingress.kubernetes.io/listen-ports"    = jsonencode([{ "HTTPS" = 443 }, { "HTTP" = 80 }])
-      "alb.ingress.kubernetes.io/ssl-redirect"    = 443
+      "alb.ingress.kubernetes.io/listen-ports" = jsonencode([{ "HTTPS" = 443 }, { "HTTP" = 80 }])
+      "alb.ingress.kubernetes.io/ssl-redirect" = 443
 
       // External DNS
       "external-dns.alpha.kubernetes.io/hostname" : "grafana.imyashkale.com"
@@ -35,7 +35,7 @@ resource "kubernetes_ingress_v1" "grafana" {
         path {
           backend {
             service {
-              name = "grafana-server"
+              name = "grafana"
               port {
                 number = 80
               }
