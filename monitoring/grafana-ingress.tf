@@ -1,4 +1,4 @@
-resource "kubernetes_ingress_v1" "router" {
+resource "kubernetes_ingress_v1" "grafana" {
   metadata {
     name      = "grafana"
     namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
@@ -49,7 +49,7 @@ resource "kubernetes_ingress_v1" "router" {
   }
 
   // using argocd-server service which is deployed by helm chart called argocd
-  depends_on = [helm_release.prometheus]
+  depends_on = [helm_release.grafana]
 }
 
 
