@@ -35,7 +35,7 @@ resource "kubernetes_ingress_v1" "grafana" {
         path {
           backend {
             service {
-              name = "prometheus-server"
+              name = "grafana-server"
               port {
                 number = 80
               }
