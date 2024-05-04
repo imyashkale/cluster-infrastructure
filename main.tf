@@ -32,9 +32,10 @@ module "crossplane" {
 }
 
 module "monitoring" {
-  name       = var.application
-  source     = "./monitoring"
-  depends_on = [module.cluster, module.loadbalancer]
+  name               = var.application
+  source             = "./monitoring"
+  ingress_class_name = module.loadbalancer.default_ingress_class_name
+  depends_on         = [module.cluster, module.loadbalancer]
 }
 
 module "argocd" {
