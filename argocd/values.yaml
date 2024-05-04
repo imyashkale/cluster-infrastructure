@@ -6,7 +6,7 @@ server:
   ingress:
     enabled: true
     controller: aws
-    ingressClassName: alb
+    ingressClassName: aws-ingress-class
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
