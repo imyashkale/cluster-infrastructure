@@ -16,7 +16,6 @@ resource "kubernetes_ingress_v1" "router" {
 
       // SSL
       "alb.ingress.kubernetes.io/listen-ports"    = jsonencode([{ "HTTPS" = 443 }, { "HTTP" = 80 }])
-      "alb.ingress.kubernetes.io/certificate-arn" = "${aws_acm_certificate.acm_cert.arn}"
       "alb.ingress.kubernetes.io/ssl-redirect"    = 443
 
       // External DNS
