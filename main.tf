@@ -26,6 +26,11 @@ module "externaldns" {
   depends_on         = [module.cluster]
 }
 
+module "crossplane" {
+  source     = "./crossplane"
+  depends_on = [module.cluster]
+}
+
 module "argocd" {
   name                  = local.name
   source                = "./argocd"
