@@ -1,6 +1,6 @@
 resource "kubernetes_ingress_v1" "router" {
   metadata {
-    name      = "argocd"
+    name      = "prometheus"
     namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     annotations = {
       "alb.ingress.kubernetes.io/load-balancer-name"           = "${var.name}"
