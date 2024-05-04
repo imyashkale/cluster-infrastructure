@@ -4,6 +4,7 @@ global:
     tag: "v2.6.6"
 server:
   ingress:
+    hostname: "argocd.imyashkale.com"
     enabled: true
     controller: aws
     ingressClassName: aws-ingress-class
