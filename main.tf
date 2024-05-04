@@ -31,6 +31,11 @@ module "crossplane" {
   depends_on = [module.cluster]
 }
 
+module "monitoring" {
+  source     = "./monitoring"
+  depends_on = [module.cluster, module.loadbalancer]
+}
+
 module "argocd" {
   name                  = local.name
   source                = "./argocd"
