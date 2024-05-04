@@ -3,6 +3,8 @@ global:
   image:
     tag: "v2.6.6"
 server:
+  service:
+    type: NodePort
   extraArgs:
     - --insecure
   ingress:
