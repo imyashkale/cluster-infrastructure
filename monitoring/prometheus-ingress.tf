@@ -1,7 +1,7 @@
 resource "kubernetes_ingress_v1" "router" {
   metadata {
     name      = "argocd"
-    namespace = kubernetes_namespace_v1.argocd.metadata[0].name
+    namespace = kubernetes_namespace_v1.monitoring.metadata[0].name
     annotations = {
       "alb.ingress.kubernetes.io/load-balancer-name"           = "${var.name}"
       "alb.ingress.kubernetes.io/scheme"                       = "internet-facing"
@@ -50,7 +50,7 @@ resource "kubernetes_ingress_v1" "router" {
   }
 
   // using argocd-server service which is deployed by helm chart called argocd
-  depends_on = [helm_release.argocd]
+  depends_on = [helm_release.prometheus]
 }
 
 
