@@ -24,7 +24,7 @@ resource "kubernetes_ingress_v1" "router" {
 
       # Ingress Groups
       "alb.ingress.kubernetes.io/group.name"  = "ultra"
-      "alb.ingress.kubernetes.io/group.order" = 20
+      "alb.ingress.kubernetes.io/group.order" = 30
     }
   }
 
