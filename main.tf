@@ -27,7 +27,7 @@ module "externaldns" {
 }
 
 module "crossplane" {
-  source     = "./crossplane"
+  source     = "./controleplane"
   depends_on = [module.cluster]
 }
 
