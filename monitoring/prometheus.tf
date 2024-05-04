@@ -12,14 +12,9 @@ resource "helm_release" "prometheus" {
   values = [
     file("${path.module}/values.yaml")
   ]
-
+  
   set {
-    name  = "ingress.annotations\\.alb\\.ingress\\.kubernetes\\.io/load-balancer-name"
-    value = var.name
-  }
-
-  set {
-    name  = "ingress.annotations\\.alb\\.ingress\\.kubernetes\\.io/certificate-arn"
-    value = aws_acm_certificate.acm_cert.arn
+    name = "server.service.type"
+    value = "NodePort"
   }
 }
