@@ -32,6 +32,7 @@ module "crossplane" {
 }
 
 module "monitoring" {
+  name       = var.application
   source     = "./monitoring"
   depends_on = [module.cluster, module.loadbalancer]
 }
