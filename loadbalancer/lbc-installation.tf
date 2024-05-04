@@ -12,6 +12,11 @@ resource "helm_release" "loadbalancer_controller" {
   }
 
   set {
+    name = "replicaCount"
+    value = 1
+  }
+
+  set {
     name  = "serviceAccount.create"
     value = "true"
   }
