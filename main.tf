@@ -26,6 +26,15 @@ module "externaldns" {
   depends_on         = [module.cluster]
 }
 
+module "storage" {
+  name               = local.name
+  source             = "./storage"
+  tags               = local.tags
+  oidc_arn           = module.cluster.oidc_arn
+  oidc_extracted_arn = module.cluster.oidc_extracted_arn
+  depends_on         = [module.cluster]
+}
+
 module "crossplane" {
   source     = "./controleplane"
   depends_on = [module.cluster]
@@ -34,6 +43,7 @@ module "crossplane" {
 module "monitoring" {
   name               = local.name
   source             = "./monitoring"
+  storage_class_name = module.storage.class_name
   ingress_class_name = module.loadbalancer.default_ingress_class_name
   depends_on         = [module.cluster, module.loadbalancer]
 }
@@ -47,11 +57,4 @@ module "argocd" {
   depends_on            = [module.cluster, module.loadbalancer]
 }
 
-module "storage" {
-  name               = local.name
-  source             = "./storage"
-  tags               = local.tags
-  oidc_arn           = module.cluster.oidc_arn
-  oidc_extracted_arn = module.cluster.oidc_extracted_arn
-  depends_on         = [module.cluster]
-}
+
