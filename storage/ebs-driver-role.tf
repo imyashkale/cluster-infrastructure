@@ -1,9 +1,3 @@
-resource "kubernetes_namespace_v1" "ebs_csi_driver" {
-  metadata {
-    name = "ebs-csi-driver"
-  }
-}
-
 # Pull EBS CSI IAM POLICY
 data "http" "ebs_csi_iam_policy" {
   url = "https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/docs/example-iam-policy.json"
@@ -36,7 +30,7 @@ resource "aws_iam_role" "ebs_csi_iam_role" {
         }
         Condition = {
           StringEquals = {
-            "${var.oidc_extracted_arn}:sub" : "system:serviceaccount:${kubernetes_namespace_v1.ebs_csi_driver.metadata[0].name}:ebs-csi-controller-sa"
+            "${var.oidc_extracted_arn}:sub" : "system:serviceaccount:${kubernetes_namespace_v1.block_storage.metadata[0].name}:ebs-csi-controller-sa"
           }
         }
 
