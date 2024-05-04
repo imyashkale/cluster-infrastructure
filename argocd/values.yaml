@@ -16,6 +16,8 @@ server:
       alb.ingress.kubernetes.io/ssl-redirect: "443"
       alb.ingress.kubernetes.io/group.name: ultra
       alb.ingress.kubernetes.io/group.order: 15
+      alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
+      alb.ingress.kubernetes.io/healthcheck-port: '80'
       external-dns.alpha.kubernetes.io/hostname: "argocd.imyashkale.com"
     aws:
       serviceType: ClusterIP
