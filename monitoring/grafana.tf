@@ -5,16 +5,6 @@ resource "helm_release" "grafana" {
   chart      = "grafana"
 
   set {
-    name  = "persistence.enabled"
-    value = true
-  }
-
-  set {
-    name  = "persistence.storageClassName"
-    value = var.storage_class_name
-  }
-
-  set {
     name  = "service.type"
     value = "NodePort"
   }
