@@ -9,6 +9,8 @@ resource "helm_release" "prometheus" {
   chart      = "prometheus"
   namespace  = kubernetes_namespace_v1.monitoring.metadata[0].name
 
-  values = "${path.module}/values.yaml"
+  values = [
+    file("${path.module}/values.yaml")
+  ]
 
 }
