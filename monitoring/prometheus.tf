@@ -20,7 +20,7 @@ resource "helm_release" "prometheus" {
 
   set {
     name  = "ingress.annotations.\\alb\\.ingress\\.kubernetes\\.io/listen-ports"
-    value = jsonencode([{ "HTTPS" = 443 }, { "HTTP" = 80 }])
+    value = jsonencode([{ HTTPS = 443 }, { HTTP = 80 }])
   }
 
   set {
