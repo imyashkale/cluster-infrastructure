@@ -1,12 +1,11 @@
 global:
   domain: argocd.imyashkale.com
-  image:
-    tag: "v2.6.6"
+
+configs:
+  params:
+    server.insecure: true
+
 server:
-  service:
-    type: NodePort
-  extraArgs:
-    - --insecure
   ingress:
     hostname: "argocd.imyashkale.com"
     enabled: true
