@@ -2,8 +2,6 @@ global:
   domain: argocd.imyashkale.com
 
 server:  
-  service:
-    type: NodePort
   extraArgs:
     - --insecure
   ingress:
