@@ -7,7 +7,7 @@ server:
   ingress:
     hostname: argocd.imyashkale.com
     enabled: true
-    controller: aws
+    controller: "aws"
     ingressClassName: aws-ingress-class
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing
