@@ -11,4 +11,11 @@ resource "helm_release" "crossplane" {
   version     = "1.8.1"
   namespace   = kubernetes_namespace_v1.crossplane.metadata[0].name
   description = "Crossplane Helm chart"
+
+  set {
+    name = "provider.packages"
+    value = jsonencode({
+      "xpkg.upbound.io/crossplane-contrib/provider-aws" = "v0.39.0"
+    })
+  }
 }
