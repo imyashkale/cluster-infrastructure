@@ -29,23 +29,3 @@ resource "kubernetes_secret_v1" "provider_config" {
   }
 }
 
-resource "kubernetes_manifest" "provider_config" {
-  depends_on = [helm_release.crossplane]
-  manifest = {
-    "apiVersion" = "aws.upbound.io/v1beta1"
-    "kind"       = "ProviderConfig"
-    "metadata" = {
-      "name" = "default"
-    }
-    "spec" = {
-      "credentials" = {
-        "source" = "Secret"
-        "secretRef" = {
-          "namespace" = kubernetes_namespace_v1.crossplane.metadata[0].name
-          "name"      = kubernetes_secret_v1.provider_config.metadata[0].name
-          "keys"      = "creds"
-        }
-      }
-    }
-  }
-}
