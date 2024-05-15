@@ -25,13 +25,13 @@ variable "argocd_admin_password" {
   sensitive   = true
 }
 
-variable "aws_access_key_id" {
+variable "crossplane_aws_access_key_id" {
   description = "AWS Access Key Id"
   type        = string
   sensitive   = true
 }
 
-variable "aws_secret_access_key" {
+variable "crossplane_aws_secret_access_key" {
   description = "AWS Secret Access Key"
   type        = string
   sensitive   = true
