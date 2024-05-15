@@ -13,9 +13,7 @@ resource "helm_release" "crossplane" {
   description = "Crossplane Helm chart"
 
   set {
-    name = "provider.packages"
-    value = jsonencode({
-      "xpkg.upbound.io/crossplane-contrib/provider-aws" = "v0.39.0"
-    })
+    name  = "provider.packages"
+    value = "{xpkg.upbound.io/crossplane-contrib/provider-aws:v0.39.0}"
   }
 }
