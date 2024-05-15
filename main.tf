@@ -36,8 +36,10 @@ module "storage" {
 }
 
 module "crossplane" {
-  source     = "./controleplane"
-  depends_on = [module.cluster]
+  source                = "./controleplane"
+  aws_access_key_id     = var.aws_access_key_id
+  aws_secret_access_key = var.aws_secret_access_key
+  depends_on            = [module.cluster]
 }
 
 module "monitoring" {
